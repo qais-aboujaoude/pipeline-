@@ -1,9 +1,19 @@
 process.env.AWS_SDK_LOAD_CONFIG = true
 
 const AWS = require('aws-sdk'),
-      CodePipeline = new AWS.CodePipeline()
+      CodePipeline = new AWS.CodePipeline(),
+      express = require('express')
 
-CodePipeline.listPipelines({}, (err, data) => {
-  err ? console.log(err, err.stack) : console.log(data)
-})
+const app = express()
+
+
+
+
+// app.get('/', (req, res) => {
+
+// }) 
+
+
+// app.listen(3000, () => console.log('Server running on port 3000'))
+
 
