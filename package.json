@@ -17,6 +17,7 @@
   "author": "qais aboujaoude <q.i.aboujaoude@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.209.0"
+    "aws-sdk": "^2.209.0",
+    "express": "^4.16.3"
   }
 }
