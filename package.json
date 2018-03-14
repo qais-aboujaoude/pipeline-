@@ -15,5 +15,8 @@
     "codepipeline"
   ],
   "author": "qais aboujaoude <q.i.aboujaoude@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.209.0"
+  }
 }
