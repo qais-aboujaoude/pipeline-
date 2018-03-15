@@ -13,7 +13,7 @@ const getListfPipelineNames = () => {
     })
   })
 }
-     
+
 CodePipeline.getPipeline({name: 'haulo-api-demo-pipeline'}, (err, data) => {
   err ? console.log(err, err.stack) : console.log(data)
 })

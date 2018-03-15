@@ -6,14 +6,13 @@ const AWS = require('aws-sdk'),
 
 const app = express()
 
+app.get('/', (req, res) => {
+  CodePipeline.getPipelineState({name: 'haulo-api-demo-pipeline'}, (err, data) => {
+    err ? console.log(err, err.stack) : res.send(data)
+  })  
+}) 
 
 
-
-// app.get('/', (req, res) => {
-
-// }) 
-
-
-// app.listen(3000, () => console.log('Server running on port 3000'))
+app.listen(3000, () => console.log('Server running on port 3000'))
 
 
