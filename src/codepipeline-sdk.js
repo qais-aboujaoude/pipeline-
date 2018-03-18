@@ -13,15 +13,16 @@ module.exports = {
   getListfPipelineNames: () => {
     return new Promise((resolve, reject) => {
       CodePipeline.listPipelines({}, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data)
-        // err ? reject(err, err.stack) : resolve(data.pipelines.map(p => p.name))
+        err ? reject(err, err.stack) : resolve(data.pipelines.map(p => p.name))
       })
     })
   },
 
   getPipeline: name => {
-    CodePipeline.getPipeline({name: name}, (err, data) => {
-      err ? console.log(err, err.stack) : console.log(data.pipeline)
+    return new Promise((resolve, reject) => {
+      CodePipeline.getPipeline({name: name}, (err, data) => {
+        err ? reject(err, err.stack) : resolve(data)
+      })
     })    
   }
 
