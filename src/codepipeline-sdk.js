@@ -24,6 +24,14 @@ module.exports = {
         err ? reject(err, err.stack) : resolve(data)
       })
     })    
+  },
+
+  getPipelineState: name => {
+    return new Promise((resolve, reject) => {
+      CodePipeline.getPipelineState({name: name}, (err, data) => {
+        err ? reject(err, err.stack) : resolve(data)
+      })
+    })    
   }
 
 }

@@ -1,15 +1,15 @@
-const codepipeline = require('./src/codepipeline-sdk')
+const codepipeline = require('./src/codepipeline-sdk'),
+      express      = require('express'),
+      app          = express()
 
-// codepipeline.getListfPipelineNames()
-//   .then(r => console.log(r))
-//   .catch(err => console.log(err))
+app.get('/pipelines', (req, res) => {
+  codepipeline.getListfPipelineNames()
+    .then(r => res.send(r))
+    .catch(err => res.send(err))
+})
 
-
-const express = require('express'),
-      app = express()
-
-app.get('/pipeline', (req, res) => {
-  codepipeline.getPipeline('haulo-trucking-client-demo-pipeline')
+app.get('/pipeline/:name', (req, res) => {
+  codepipeline.getPipeline(req.params.name)
     .then(r => res.send(r))
     .catch(err => res.send(err))
 })
