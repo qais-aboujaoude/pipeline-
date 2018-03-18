@@ -19,6 +19,11 @@ module.exports = {
     })
   },
 
+  getPipeline: name => {
+    CodePipeline.getPipeline({name: name}, (err, data) => {
+      err ? console.log(err, err.stack) : console.log(data.pipeline)
+    })    
+  }
 
 }
 
