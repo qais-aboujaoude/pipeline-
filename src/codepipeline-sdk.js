@@ -34,9 +34,23 @@ module.exports = {
     })    
   },
 
-  listPipelineExecutions: name => {
+  listPipelineExecutions: (name, number) => {
     return new Promise((resolve, reject) => {
-      CodePipeline.listPipelineExecutions({name: name}, (err, data) => {
+      CodePipeline.listPipelineExecutions({
+        pipelineName: name,
+        maxResults: number || 10
+        }, (err, data) => {
+        err ? reject(err, err.stack) : resolve(data)
+      })
+    })    
+  },
+
+  getPipelineExecutions: () => {
+    return new Promise((resolve, reject) => {
+      CodePipeline.getPipelineExecution({
+        pipelineExecutionId: 'c7061c33-f756-4aa9-b2dc-ea5ea3bdae89',
+        pipelineName: 'haulo-api-prod-pipeline'
+        }, (err, data) => {
         err ? reject(err, err.stack) : resolve(data)
       })
     })    
