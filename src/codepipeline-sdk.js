@@ -32,28 +32,15 @@ module.exports = {
         err ? reject(err, err.stack) : resolve(data)
       })
     })    
+  },
+
+  listPipelineExecutions: name => {
+    return new Promise((resolve, reject) => {
+      CodePipeline.listPipelineExecutions({name: name}, (err, data) => {
+        err ? reject(err, err.stack) : resolve(data)
+      })
+    })    
   }
 
 }
-
-
-// module.exports = getListfPipelineNames
-
-/*
-CodePipeline.getPipeline({name: 'haulo-api-demo-pipeline'}, (err, data) => {
-  err ? console.log(err, err.stack) : console.log(data)
-})
-
-CodePipeline.getPipelineState({name: 'haulo-api-demo-pipeline'}, (err, data) => {
-  err ? console.log(err, err.stack) : console.log(data)
-})
-
-CodePipeline.listPipelineExecutions({pipelineName: 'haulo-api-demo-pipeline'}, (err, data) => {
-   err ? console.log(err, err.stack) : console.log(data)
-})
-
-CodePipeline.getPipelineState({name: 'haulo-api-demo-pipeline'}, (err, data) => {
-  err ? console.log(err, err.stack) : res.send(data)
-})  
-*/
 
