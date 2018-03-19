@@ -33,10 +33,11 @@ app.get('/state/:name', (req, res) => {
 /**
  * Get list of recent executions of a pipeline
  * number is an optional param. default returns 10
+ * parseInt sends a NaN if parsed param is number an integer
  */
 app.get('/executions/:name/:number*?', (req, res) => {
-  console.log(req.params.number)
-  codepipeline.listPipelineExecutions(req.params.name, req.params.number)
+  codepipeline
+  .listPipelineExecutions(req.params.name, parseInt(req.params.number))
     .then(r => res.send(r))
     .catch(err => res.send(err))
 })
