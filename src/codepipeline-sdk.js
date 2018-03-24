@@ -6,9 +6,11 @@ const AWS = require('aws-sdk'),
 module.exports = {
 
   /**
-   * @method getListfPipelineNames
+   * @async
+   * @method getListfPipelines
    * Calls the CodePipeline SDK and returns all pipelines names, date and version
    * associated with the user
+   * @returns 
    */
   getListfPipelines: () => {
     return new Promise((resolve, reject) => {
@@ -22,6 +24,7 @@ module.exports = {
    * @method getListfPipelineNames
    * Calls the CodePipeline SDK and returns all pipelines names associated
    * with the user 
+   * @returns 
    */
   ListfPipelineNames: () => {
     return new Promise((resolve, reject) => {
@@ -31,6 +34,13 @@ module.exports = {
     })
   },
 
+  /**
+   * @async
+   * @method getListfPipelines
+   * Calls the CodePipeline SDK and returns all pipelines names, date and version
+   * associated with the user
+   * @returns 
+   */
   getPipeline: name => {
     return new Promise((resolve, reject) => {
       CodePipeline.getPipeline({name: name}, (err, data) => {
@@ -39,6 +49,13 @@ module.exports = {
     })    
   },
 
+  /**
+   * @async
+   * @method getListfPipelines
+   * Calls the CodePipeline SDK and returns all pipelines names, date and version
+   * associated with the user
+   * @returns 
+   */
   getPipelineState: name => {
     return new Promise((resolve, reject) => {
       CodePipeline.getPipelineState({name: name}, (err, data) => {
@@ -47,6 +64,13 @@ module.exports = {
     })    
   },
 
+  /**
+   * @async
+   * @method getListfPipelines
+   * Calls the CodePipeline SDK and returns all pipelines names, date and version
+   * associated with the user
+   * @returns 
+   */
   listPipelineExecutions: (name, number) => {
     return new Promise((resolve, reject) => {
       CodePipeline.listPipelineExecutions({
