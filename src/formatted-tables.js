@@ -19,15 +19,6 @@ const namesListTable = new Table({
   head: ['List of Pipelines Names']
 })
 
-const displayListofNames = () => {
-  pipeline.ListfPipelineNames()
-  .then(r => {
-    r.forEach(e => table.push([e]))
-    console.log(table.toString())
-  })
-  .catch(err => console.log(err))
-}
-
 const pipesTable = new Table({
   chars: {
     'top': '═'
@@ -46,6 +37,15 @@ const pipesTable = new Table({
   head: ['List of Pipelines']
 })
 
+const displayListofNames = () => {
+  pipeline.ListfPipelineNames()
+    .then(r => {
+      r.forEach(e => namesListTable.push([e]))
+      console.log(namesListTable.toString())
+    })
+    .catch(err => console.log(err))
+}
+
 const displayListofPipelines = () => {
   pipeline.getListfPipelines()
     .then(r => {
@@ -56,8 +56,11 @@ const displayListofPipelines = () => {
             [{content:'created:'}, {content: e.created.toString()}],
             [{content:'created:'}, {content: e.updated.toString()}]
         )
-      });
+      })
+      console.log(pipesTable.toString())
     })
     .catch(e => console.log(e))
 }
         
+module.exports.displayListofNames = displayListofNames
+module.exports.displayListofPipelines = displayListofPipelines

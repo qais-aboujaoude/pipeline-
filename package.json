@@ -20,6 +20,7 @@
   "dependencies": {
     "aws-sdk": "^2.209.0",
     "cli-table2": "^0.2.0",
+    "commander": "^2.15.1",
     "express": "^4.16.3"
   }
 }
