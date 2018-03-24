@@ -7,10 +7,23 @@ module.exports = {
 
   /**
    * @method getListfPipelineNames
+   * Calls the CodePipeline SDK and returns all pipelines names, date and version
+   * associated with the user
+   */
+  getListfPipeline: () => {
+    return new Promise((resolve, reject) => {
+      CodePipeline.listPipelines({}, (err, data) => {
+        err ? reject(err, err.stack) : resolve(data)
+      })
+    })
+  },
+
+  /**
+   * @method getListfPipelineNames
    * Calls the CodePipeline SDK and returns all pipelines names associated
    * with the user 
    */
-  getListfPipelineNames: () => {
+  ListfPipelineNames: () => {
     return new Promise((resolve, reject) => {
       CodePipeline.listPipelines({}, (err, data) => {
         err ? reject(err, err.stack) : resolve(data.pipelines.map(p => p.name))
