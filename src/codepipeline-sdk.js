@@ -10,7 +10,7 @@ module.exports = {
    * @method getListfPipelines
    * Calls the CodePipeline SDK and returns all pipelines names, date and version
    * associated with the user
-   * @returns 
+   * @returns {Promise<array>} 
    */
   getListfPipelines: () => {
     return new Promise((resolve, reject) => {
@@ -22,9 +22,9 @@ module.exports = {
 
   /**
    * @method getListfPipelineNames
-   * Calls the CodePipeline SDK and returns all pipelines names associated
+   * Calls the CodePipeline SDK and returns an array of pipeline names
    * with the user 
-   * @returns 
+   * @returns {Promise<array>} 
    */
   ListfPipelineNames: () => {
     return new Promise((resolve, reject) => {
@@ -36,10 +36,11 @@ module.exports = {
 
   /**
    * @async
-   * @method getListfPipelines
-   * Calls the CodePipeline SDK and returns all pipelines names, date and version
-   * associated with the user
-   * @returns 
+   * @method getPipeline
+   * Calls the CodePipeline SDK and returns a JSON object containing information
+   * about the pipeline and its stages
+   * @param {string} name name of pipeline to retrieve infomation about
+   * @returns {Object} a JSON object of pipeline information
    */
   getPipeline: name => {
     return new Promise((resolve, reject) => {
@@ -51,10 +52,11 @@ module.exports = {
 
   /**
    * @async
-   * @method getListfPipelines
+   * @method getPipelineState
    * Calls the CodePipeline SDK and returns all pipelines names, date and version
    * associated with the user
-   * @returns 
+   * @param {string} name name of pipeline to retrieve infomation about
+   * @returns {Object} a JSON object about pipeline state
    */
   getPipelineState: name => {
     return new Promise((resolve, reject) => {
@@ -66,10 +68,12 @@ module.exports = {
 
   /**
    * @async
-   * @method getListfPipelines
+   * @method listPipelineExecutions
    * Calls the CodePipeline SDK and returns all pipelines names, date and version
    * associated with the user
-   * @returns 
+   * @param {string} name name of pipeline to retrieve infomation about
+   * @param {number} number number of excuitions to return. Default is 10
+   * @returns {Object} a JSON object of pipeline executions 
    */
   listPipelineExecutions: (name, number) => {
     return new Promise((resolve, reject) => {
@@ -82,6 +86,14 @@ module.exports = {
     })    
   },
 
+  /**
+   * //TODO rework
+   * @async
+   * @method getListfPipelines
+   * Calls the CodePipeline SDK and returns an detailed information about 
+   * an execution 
+   * @returns {Object} a JSON object of 
+   */
   getPipelineExecutions: () => {
     return new Promise((resolve, reject) => {
       CodePipeline.getPipelineExecution({
