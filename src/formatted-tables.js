@@ -1,7 +1,11 @@
 const Table    = require('cli-table2'),
       pipeline = require('./codepipeline-sdk'),
-      colors   = require('colors')
+      colors   = require('colors'),
       ora      = require('ora')
+
+colors.setTheme({
+  boldRed: ['red', 'bold']
+})
 
 const spinner  = ora('Loading!'),
       chars = {
@@ -47,7 +51,7 @@ const displayListofPipelines = () => {
     .then(r => {
       r.forEach(e => {
         pipelinesListTable.push(
-            [{content:'name:'}, {content: e.name}],
+            [{content:'name:'.bold}, {content: `${e.name}`.blue}],
             [{content:'version:'}, {content: e.version}],
             [{content:'created:'}, {content: e.created.toString()}],
             [{content:'created:'}, {content: e.updated.toString()}]
@@ -59,15 +63,15 @@ const displayListofPipelines = () => {
     .catch(e => console.log(e))
 }
 
-const pipelineInformation = () => {
+const pipelineInformation = name => {
   spinner.start()
-  pipeline.getPipeline('haulo-api-staging-pipeline')
+  pipeline.getPipeline(name)
     .then(r => {
       spinner.stop()
       pipeTable.options.head = [r.pipeline.name]
       pipeTable.push(
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
-        [{colSpan:2,content: colors.rainbow('artifactStore')}],
+        [{colSpan:2,content: 'artifactStore'}],
         [r.pipeline.artifactStore.type, 
          r.pipeline.artifactStore.location],
       )
