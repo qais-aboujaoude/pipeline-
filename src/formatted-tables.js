@@ -68,8 +68,8 @@ const pipelineInformation = name => {
   pipeline.getPipeline(name)
     .then(r => {
       spinner.stop()
-      pipeTable.options.head = [r.pipeline.name]
       pipeTable.push(
+        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`.bold.red}],
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
         [{colSpan:2,content: 'artifactStore'}],
         [r.pipeline.artifactStore.type, 
