@@ -1,32 +1,30 @@
 const Table    = require('cli-table2'),
       pipeline = require('./codepipeline-sdk'),
-      ora = require('ora')
+      ora      = require('ora')
 
-const chars = {
-  'top': '═',
-  'top-mid': '╤',
-  'top-left': '╔',
-  'top-right': '╗',
-  'bottom': '═',
-  'bottom-mid': '╧',
-  'bottom-left': '╚',
-  'bottom-right': '╝',
-  'left': '║',
-  'left-mid': '╟',
-  'right': '║',
-  'right-mid': '╢'
-}
-
-const namesListTable = new Table({
-  chars: chars,
-  head: ['List of Pipelines Names']
-})
-
-const pipesTable = new Table({
-  chars: chars,
-  head: ['List of Pipelines']
-})
-const spinner = ora('Loading!')
+const spinner  = ora('Loading!'),
+      chars = {
+        'top': '═',
+        'top-mid': '╤',
+        'top-left': '╔',
+        'top-right': '╗',
+        'bottom': '═',
+        'bottom-mid': '╧',
+        'bottom-left': '╚',
+        'bottom-right': '╝',
+        'left': '║',
+        'left-mid': '╟',
+        'right': '║',
+        'right-mid': '╢'
+      },
+      namesListTable = new Table({
+        chars: chars,
+        head: ['List of Pipelines Names']
+      }),
+      pipesTable = new Table({
+        chars: chars,
+        head: ['List of Pipelines']
+      })
 
 const displayListofNames = () => {
   spinner.start()
