@@ -1,5 +1,6 @@
 const Table    = require('cli-table2'),
       pipeline = require('./codepipeline-sdk'),
+      colors   = require('colors')
       ora      = require('ora')
 
 const spinner  = ora('Loading!'),
@@ -21,9 +22,12 @@ const spinner  = ora('Loading!'),
         chars: chars,
         head: ['List of Pipelines Names']
       }),
-      pipesTable = new Table({
+      pipelinesListTable = new Table({
         chars: chars,
         head: ['List of Pipelines']
+      }),
+      pipeTable = new Table({
+        chars: chars
       })
 
 const displayListofNames = () => {
@@ -34,7 +38,7 @@ const displayListofNames = () => {
       spinner.stop()
       console.log(namesListTable.toString())
     })
-    .catch(err => console.log(err))
+    .catch(e => console.log(e))
 }
 
 const displayListofPipelines = () => {
@@ -42,7 +46,7 @@ const displayListofPipelines = () => {
   pipeline.getListfPipelines()
     .then(r => {
       r.forEach(e => {
-        pipesTable.push(
+        pipelinesListTable.push(
             [{content:'name:'}, {content: e.name}],
             [{content:'version:'}, {content: e.version}],
             [{content:'created:'}, {content: e.created.toString()}],
@@ -50,10 +54,28 @@ const displayListofPipelines = () => {
         )
       })
       spinner.stop()
-      console.log(pipesTable.toString())
+      console.log(pipelinesListTable.toString())
     })
     .catch(e => console.log(e))
 }
-        
+
+const pipelineInformation = () => {
+  spinner.start()
+  pipeline.getPipeline('haulo-api-staging-pipeline')
+    .then(r => {
+      spinner.stop()
+      pipeTable.options.head = [r.pipeline.name]
+      pipeTable.push(
+        [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
+        [{colSpan:2,content: colors.rainbow('artifactStore')}],
+        [r.pipeline.artifactStore.type, 
+         r.pipeline.artifactStore.location],
+      )
+      console.log(pipeTable.toString())
+    })
+    .catch(e => console.log(e))
+}
+
 module.exports.displayListofNames = displayListofNames
 module.exports.displayListofPipelines = displayListofPipelines
+module.exports.pipelineInformation = pipelineInformation

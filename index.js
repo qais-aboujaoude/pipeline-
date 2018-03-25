@@ -6,9 +6,11 @@ program
   .version('0.1.0')
   .option('-l, --list', 'list pipelines')
   .option('-n, --names', 'List Names')
+  .option('-p, --pipeline', 'List Names')
   .parse(process.argv)
 
 if(program.names) display.displayListofNames() 
 if(program.list) display.displayListofPipelines()
+if(program.pipeline) display.pipelineInformation()
 
 
