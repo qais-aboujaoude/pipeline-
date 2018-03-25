@@ -8,7 +8,7 @@ program
   .option('-n, --names', 'List Names')
   .parse(process.argv)
 
-if(program.names) display.displayListofNames()
+if(program.names) display.displayListofNames() 
 if(program.list) display.displayListofPipelines()
 
 

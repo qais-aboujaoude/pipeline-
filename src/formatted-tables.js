@@ -1,5 +1,6 @@
 const Table    = require('cli-table2'),
-      pipeline = require('./codepipeline-sdk')
+      pipeline = require('./codepipeline-sdk'),
+      ora = require('ora')
 
 const namesListTable = new Table({
   chars: {
@@ -36,17 +37,21 @@ const pipesTable = new Table({
   },
   head: ['List of Pipelines']
 })
+const spinner = ora({spinner: 'shark', text: 'Loading Pipelines'})
 
 const displayListofNames = () => {
+  spinner.start()
   pipeline.ListfPipelineNames()
     .then(r => {
       r.forEach(e => namesListTable.push([e]))
+      spinner.stop()
       console.log(namesListTable.toString())
     })
     .catch(err => console.log(err))
 }
 
 const displayListofPipelines = () => {
+  spinner.start()
   pipeline.getListfPipelines()
     .then(r => {
       r.forEach(e => {
@@ -57,6 +62,7 @@ const displayListofPipelines = () => {
             [{content:'created:'}, {content: e.updated.toString()}]
         )
       })
+      spinner.stop()
       console.log(pipesTable.toString())
     })
     .catch(e => console.log(e))
