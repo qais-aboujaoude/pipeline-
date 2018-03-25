@@ -71,10 +71,16 @@ const pipelineInformation = name => {
       pipeTable.push(
         [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`.bold.red}],
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
-        [{colSpan:2,content: 'artifactStore'}],
-        [r.pipeline.artifactStore.type, 
-         r.pipeline.artifactStore.location],
+        // [{colSpan:2,content: 'artifactStore'}],
+        // [r.pipeline.artifactStore.type, 
+        //  r.pipeline.artifactStore.location],
+        [{rowSpan:2, content:'artifactStore', vAlign:'center'},
+        r.pipeline.artifactStore.type],
+        [r.pipeline.artifactStore.location]
       )
+      r.pipeline.stages.forEach(e => {
+        console.log(e)
+      });
       console.log(pipeTable.toString())
     })
     .catch(e => console.log(e))

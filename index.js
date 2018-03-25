@@ -14,4 +14,3 @@ if(program.names) display.displayListofNames()
 if(program.list) display.displayListofPipelines()
 if(program.pipeline) display.pipelineInformation(program.name)
 
-
