@@ -69,7 +69,7 @@ const pipelineInformation = name => {
     .then(r => {
       spinner.stop()
       pipeTable.push(
-        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`.bold.red}],
+        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`}],
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
         // [{colSpan:2,content: 'artifactStore'}],
         // [r.pipeline.artifactStore.type, 
@@ -79,7 +79,9 @@ const pipelineInformation = name => {
         [r.pipeline.artifactStore.location]
       )
       r.pipeline.stages.forEach(e => {
-        console.log(e)
+        pipeTable.push(
+          [{content:'name:'.bold}, {content: `${e.name}`.blue}],
+        )
       });
       console.log(pipeTable.toString())
     })
