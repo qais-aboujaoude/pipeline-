@@ -3,18 +3,18 @@ const Table    = require('cli-table2'),
       ora = require('ora')
 
 const chars = {
-  'top': '═'
-  , 'top-mid': '╤'
-  , 'top-left': '╔'
-  , 'top-right': '╗'
-  , 'bottom': '═'
-  , 'bottom-mid': '╧'
-  , 'bottom-left': '╚'
-  , 'bottom-right': '╝'
-  , 'left': '║'
-  , 'left-mid': '╟'
-  , 'right': '║'
-  , 'right-mid': '╢'
+  'top': '═',
+  'top-mid': '╤',
+  'top-left': '╔',
+  'top-right': '╗',
+  'bottom': '═',
+  'bottom-mid': '╧',
+  'bottom-left': '╚',
+  'bottom-right': '╝',
+  'left': '║',
+  'left-mid': '╟',
+  'right': '║',
+  'right-mid': '╢'
 }
 
 const namesListTable = new Table({
