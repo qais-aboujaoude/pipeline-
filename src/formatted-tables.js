@@ -2,42 +2,31 @@ const Table    = require('cli-table2'),
       pipeline = require('./codepipeline-sdk'),
       ora = require('ora')
 
+const chars = {
+  'top': '═'
+  , 'top-mid': '╤'
+  , 'top-left': '╔'
+  , 'top-right': '╗'
+  , 'bottom': '═'
+  , 'bottom-mid': '╧'
+  , 'bottom-left': '╚'
+  , 'bottom-right': '╝'
+  , 'left': '║'
+  , 'left-mid': '╟'
+  , 'right': '║'
+  , 'right-mid': '╢'
+}
+
 const namesListTable = new Table({
-  chars: {
-    'top': '═'
-    , 'top-mid': '╤'
-    , 'top-left': '╔'
-    , 'top-right': '╗'
-    , 'bottom': '═'
-    , 'bottom-mid': '╧'
-    , 'bottom-left': '╚'
-    , 'bottom-right': '╝'
-    , 'left': '║'
-    , 'left-mid': '╟'
-    , 'right': '║'
-    , 'right-mid': '╢'
-  },
+  chars: chars,
   head: ['List of Pipelines Names']
 })
 
 const pipesTable = new Table({
-  chars: {
-    'top': '═'
-    , 'top-mid': '╤'
-    , 'top-left': '╔'
-    , 'top-right': '╗'
-    , 'bottom': '═'
-    , 'bottom-mid': '╧'
-    , 'bottom-left': '╚'
-    , 'bottom-right': '╝'
-    , 'left': '║'
-    , 'left-mid': '╟'
-    , 'right': '║'
-    , 'right-mid': '╢'
-  },
+  chars: chars,
   head: ['List of Pipelines']
 })
-const spinner = ora({spinner: 'shark', text: 'Loading Pipelines'})
+const spinner = ora('Loading!')
 
 const displayListofNames = () => {
   spinner.start()
