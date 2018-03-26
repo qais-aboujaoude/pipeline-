@@ -42,7 +42,7 @@ const displayListofNames = () => {
       spinner.stop()
       console.log(namesListTable.toString())
     })
-    .catch(e => console.log(e))
+    .catch(e => console.error(e))
 }
 
 const displayListofPipelines = () => {
@@ -60,7 +60,7 @@ const displayListofPipelines = () => {
       spinner.stop()
       console.log(pipelinesListTable.toString())
     })
-    .catch(e => console.log(e))
+    .catch(e => console.error(e))
 }
 
 const pipelineInformation = name => {
@@ -72,7 +72,7 @@ const pipelineInformation = name => {
         [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`}],
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
         // [{colSpan:2,content: 'artifactStore'}],
-        // [r.pipeline.artifactStore.type, 
+        // [r.pipeline.artifactStore.type,
         //  r.pipeline.artifactStore.location],
         [{rowSpan:2, content:'artifactStore', vAlign:'center'},
         r.pipeline.artifactStore.type],
@@ -85,7 +85,7 @@ const pipelineInformation = name => {
       });
       console.log(pipeTable.toString())
     })
-    .catch(e => console.log(e))
+    .catch(e => console.error(e))
 }
 
 module.exports.displayListofNames = displayListofNames
