@@ -1,8 +1,11 @@
 {
   "name": "pipeline-plus",
   "version": "1.0.0",
-  "description": "blah",
+  "description": "A cleaner and better alternative to view and manage AWS CodePipelines in the terminal",
   "main": "index.js",
+  "bin": {
+    "pipeline-plus": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +15,9 @@
     "pipeline",
     "ci/cd",
     "amazon web services",
-    "codepipeline"
+    "codepipeline",
+    "devops",
+    "cli-tool"
   ],
   "author": "qais aboujaoude <q.i.aboujaoude@gmail.com>",
   "license": "MPL-2.0",
