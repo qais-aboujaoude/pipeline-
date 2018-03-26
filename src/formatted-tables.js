@@ -69,7 +69,7 @@ const pipelineInformation = name => {
     .then(r => {
       spinner.stop()
       pipeTable.push(
-        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`}],
+        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`.bold}],
         [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
         // [{colSpan:2,content: 'artifactStore'}],
         // [r.pipeline.artifactStore.type,
