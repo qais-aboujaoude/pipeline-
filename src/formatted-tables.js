@@ -20,6 +20,12 @@ const print = t => console.log(t.toString())
  */
 const header = c => [{colSpan:2, hAlign:'center', content: c.bold}]
 
+/**
+ * @method doubleContentRow returns a row with two content objects
+ * @param {*} n name
+ * @param {*} v value
+ * @returns {Object[]} An array of table row objects
+ */
 const doubleContentRow = (n, v) => [{content: n}, {content: v}]
 
 const spinner  = ora('Loading!'),
@@ -66,10 +72,10 @@ const displayListofPipelines = () => {
     .then(r => {
       r.forEach(e => {
         pipelinesListTable.push(
-            doubleContentRow('name'.bold, e.name.blue),
-            doubleContentRow('version', e.version),
-            doubleContentRow('created', e.created.toString()),
-            doubleContentRow('updated', e.updated.toString())
+          header(e.name),
+          doubleContentRow('version', e.version),
+          doubleContentRow('created', e.created.toString()),
+          doubleContentRow('updated', e.updated.toString())
         )
       })
       spinner.stop()
