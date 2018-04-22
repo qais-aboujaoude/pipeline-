@@ -8,10 +8,19 @@ colors.setTheme({
 })
 
 /**
- * @method print takes a table, toStrings is and logs it
- * @param {*} v 
+ * @method print stringifys a Table object and prints it
+ * @param {Object} t a Table object
  */
-// const print = v => console.log(v.toString())
+const print = t => console.log(t.toString())
+
+/**
+ * @method header returns a header row
+ * @param {*} c the content of the header
+ * @returns {Object[]} An array of table row objects
+ */
+const header = c => [{colSpan:2, hAlign:'center', content: c.bold}]
+
+const doubleContentRow = (n, v) => [{content: n}, {content: v}]
 
 const spinner  = ora('Loading!'),
       chars = {
@@ -38,9 +47,7 @@ const spinner  = ora('Loading!'),
       }),
       pipeTable = new Table({
         chars: chars
-      }),
-      header = content => [{colSpan:2, hAlign:'center', content: content.bold}],
-      print = v => console.log(v.toString())
+      })
 
 const displayListofNames = () => {
   spinner.start()
@@ -59,10 +66,10 @@ const displayListofPipelines = () => {
     .then(r => {
       r.forEach(e => {
         pipelinesListTable.push(
-            [{content:'name:'.bold}, {content: `${e.name}`.blue}],
-            [{content:'version:'}, {content: e.version}],
-            [{content:'created:'}, {content: e.created.toString()}],
-            [{content:'created:'}, {content: e.updated.toString()}]
+            doubleContentRow('name'.bold, e.name.blue),
+            doubleContentRow('version', e.version),
+            doubleContentRow('created', e.created.toString()),
+            doubleContentRow('updated', e.updated.toString())
         )
       })
       spinner.stop()
