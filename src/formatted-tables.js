@@ -11,7 +11,7 @@ colors.setTheme({
  * @method print takes a table, toStrings is and logs it
  * @param {*} v 
  */
-const print = v => console.log(v.toString())
+// const print = v => console.log(v.toString())
 
 const spinner  = ora('Loading!'),
       chars = {
@@ -38,7 +38,9 @@ const spinner  = ora('Loading!'),
       }),
       pipeTable = new Table({
         chars: chars
-      })
+      }),
+      header = content => [{colSpan:2, hAlign:'center', content: content.bold}],
+      print = v => console.log(v.toString())
 
 const displayListofNames = () => {
   spinner.start()
@@ -75,7 +77,7 @@ const pipelineInformation = name => {
     .then(r => {
       spinner.stop()
       pipeTable.push(
-        [{colSpan:2, hAlign:'center', content: `${r.name}`.bold}],
+        header(r.name),
         [{content:'roleArn:'}, {content: r.roleArn}],
         // [{colSpan:2,content: 'artifactStore'}],
         // [r.artifactStore.type,
@@ -83,7 +85,7 @@ const pipelineInformation = name => {
         [{rowSpan:2, content:'artifactStore', vAlign:'center'},
         r.artifactStore.type],
         [r.artifactStore.location],
-        [{colSpan:2, hAlign:'center', content: 'stages'}]
+        header('stages')
       )
       r.stages.forEach(e => {
         pipeTable.push(
