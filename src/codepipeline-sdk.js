@@ -12,13 +12,10 @@ module.exports = {
    * associated with the user
    * @returns {Promise<array>} 
    */
-  getListfPipelines: () => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.listPipelines({}, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data.pipelines)
-      })
-    })
-  },
+  getListfPipelines: () => (new Promise((resolve, reject) => {
+    CodePipeline.listPipelines({}, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data.pipelines)
+    })})),
 
   /**
    * @method getListfPipelineNames
@@ -26,13 +23,10 @@ module.exports = {
    * with the user 
    * @returns {Promise<array>} 
    */
-  ListfPipelineNames: () => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.listPipelines({}, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data.pipelines.map(p => p.name))
-      })
-    })
-  },
+  ListfPipelineNames: () => (new Promise((resolve, reject) => {
+    CodePipeline.listPipelines({}, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data.pipelines.map(p => p.name))
+    })})),
 
   /**
    * @async
@@ -42,13 +36,10 @@ module.exports = {
    * @param {string} name name of pipeline to retrieve infomation about
    * @returns {Object} a JSON object of pipeline information
    */
-  getPipeline: name => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.getPipeline({name: name}, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data)
-      })
-    })    
-  },
+  getPipeline: name => (new Promise((resolve, reject) => {
+    CodePipeline.getPipeline({name: name}, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data)
+    })})),
 
   /**
    * @async
@@ -58,13 +49,10 @@ module.exports = {
    * @param {string} name name of pipeline to retrieve infomation about
    * @returns {Object} a JSON object about pipeline state
    */
-  getPipelineState: name => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.getPipelineState({name: name}, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data)
-      })
-    })    
-  },
+  getPipelineState: name => (new Promise((resolve, reject) => {
+    CodePipeline.getPipelineState({name: name}, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data)
+    })})),
 
   /**
    * @async
@@ -75,16 +63,13 @@ module.exports = {
    * @param {number} number number of excuitions to return. Default is 10
    * @returns {Object} a JSON object of pipeline executions 
    */
-  listPipelineExecutions: (name, number) => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.listPipelineExecutions({
-        pipelineName: name,
-        maxResults: number || 10
-        }, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data)
-      })
-    })    
-  },
+  listPipelineExecutions: (name, number) => (new Promise((resolve, reject) => {
+    CodePipeline.listPipelineExecutions({
+      pipelineName: name,
+      maxResults: number || 10
+      }, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data)
+    })})),
 
   /**
    * //TODO rework
@@ -94,16 +79,13 @@ module.exports = {
    * an execution 
    * @returns {Object} a JSON object of 
    */
-  getPipelineExecutions: () => {
-    return new Promise((resolve, reject) => {
-      CodePipeline.getPipelineExecution({
-        pipelineExecutionId: 'c7061c33-f756-4aa9-b2dc-ea5ea3bdae89',
-        pipelineName: 'haulo-api-prod-pipeline'
-        }, (err, data) => {
-        err ? reject(err, err.stack) : resolve(data)
-      })
-    })    
-  }
+  getPipelineExecutions: () => (new Promise((resolve, reject) => {
+    CodePipeline.getPipelineExecution({
+      pipelineExecutionId: 'c7061c33-f756-4aa9-b2dc-ea5ea3bdae89',
+      pipelineName: 'haulo-api-prod-pipeline'
+      }, (err, data) => {
+      err ? reject(err, err.stack) : resolve(data)
+    })}))
 
 }
 
