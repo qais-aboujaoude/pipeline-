@@ -38,7 +38,7 @@ module.exports = {
    */
   getPipeline: name => (new Promise((resolve, reject) => {
     CodePipeline.getPipeline({name: name}, (err, data) => {
-      err ? reject(err, err.stack) : resolve(data)
+      err ? reject(err, err.stack) : resolve(data.pipeline)
     })})),
 
   /**

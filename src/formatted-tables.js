@@ -75,16 +75,16 @@ const pipelineInformation = name => {
     .then(r => {
       spinner.stop()
       pipeTable.push(
-        [{colSpan:2, hAlign:'center', content: `${r.pipeline.name}`.bold}],
-        [{content:'roleArn:'}, {content: r.pipeline.roleArn}],
+        [{colSpan:2, hAlign:'center', content: `${r.name}`.bold}],
+        [{content:'roleArn:'}, {content: r.roleArn}],
         // [{colSpan:2,content: 'artifactStore'}],
-        // [r.pipeline.artifactStore.type,
-        //  r.pipeline.artifactStore.location],
+        // [r.artifactStore.type,
+        //  r.artifactStore.location],
         [{rowSpan:2, content:'artifactStore', vAlign:'center'},
-        r.pipeline.artifactStore.type],
-        [r.pipeline.artifactStore.location]
+        r.artifactStore.type],
+        [r.artifactStore.location]
       )
-      r.pipeline.stages.forEach(e => {
+      r.stages.forEach(e => {
         pipeTable.push(
           [{content:'name:'.bold}, {content: `${e.name}`.blue}],
         )
