@@ -1,11 +1,17 @@
-const Table    = require('cli-table2'),
-      pipeline = require('./codepipeline-sdk'),
+const pipeline = require('./codepipeline-sdk'),
       colors   = require('colors'),
+      Table    = require('cli-table2'),
       ora      = require('ora')
 
 colors.setTheme({
   boldRed: ['red', 'bold']
 })
+
+/**
+ * @method print takes a table, toStrings is and logs it
+ * @param {*} v 
+ */
+const print = v => console.log(v.toString())
 
 const spinner  = ora('Loading!'),
       chars = {
@@ -40,7 +46,7 @@ const displayListofNames = () => {
     .then(r => {
       r.forEach(e => namesListTable.push([e]))
       spinner.stop()
-      console.log(namesListTable.toString())
+      print(namesListTable)
     })
     .catch(e => console.error(e))
 }
@@ -58,7 +64,7 @@ const displayListofPipelines = () => {
         )
       })
       spinner.stop()
-      console.log(pipelinesListTable.toString())
+      print(pipelinesListTable)
     })
     .catch(e => console.error(e))
 }
@@ -83,7 +89,7 @@ const pipelineInformation = name => {
           [{content:'name:'.bold}, {content: `${e.name}`.blue}],
         )
       });
-      console.log(pipeTable.toString())
+      print(pipeTable)
     })
     .catch(e => console.error(e))
 }
