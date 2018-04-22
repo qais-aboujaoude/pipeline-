@@ -82,7 +82,8 @@ const pipelineInformation = name => {
         //  r.artifactStore.location],
         [{rowSpan:2, content:'artifactStore', vAlign:'center'},
         r.artifactStore.type],
-        [r.artifactStore.location]
+        [r.artifactStore.location],
+        [{colSpan:2, hAlign:'center', content: 'stages'}]
       )
       r.stages.forEach(e => {
         pipeTable.push(
